@@ -1,17 +1,18 @@
 package org.polyfrost.redaction.features
 
-import cc.polyfrost.oneconfig.libs.universal.UResolution
-import cc.polyfrost.oneconfig.utils.Multithreading
-import cc.polyfrost.oneconfig.utils.dsl.mc
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.GuiChat
 import net.minecraft.client.renderer.GlStateManager
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.util.ResourceLocation
+import org.polyfrost.oneconfig.utils.v1.Multithreading
+import org.polyfrost.polyui.color.toJavaColor
 import org.polyfrost.redaction.config.RedactionConfig
 import org.polyfrost.redaction.mixin.MinecraftAccessor
 import org.polyfrost.redaction.utils.MathUtil
 import org.polyfrost.redaction.utils.RenderUtils
+import org.polyfrost.universal.UResolution
+import org.polyfrost.utils.v1.dsl.mc
 import java.awt.event.ActionListener
 import javax.swing.Timer
 
@@ -65,7 +66,7 @@ object BlackBar {
     }
 
     fun setTimer() {
-        Multithreading.runAsync {
+        Multithreading.submit {
             timer?.stop()
             timer = Timer(RedactionConfig.blackbarSpeed, timerTask)
             timer?.start()
@@ -83,10 +84,10 @@ object BlackBar {
                 it.y = UResolution.scaledHeight - 22
                 it.hiding = false
             }
-            if (RedactionConfig.blackbarColor.alpha != 0) {
-                RenderUtils.drawRectEnhanced(0, it.y, UResolution.scaledWidth, 22, RedactionConfig.blackbarColor.rgb)
+            if (RedactionConfig.blackbarColor.alpha != 0f) {
+                RenderUtils.drawRectEnhanced(0, it.y, UResolution.scaledWidth, 22, RedactionConfig.blackbarColor.rgba)
             }
-            if (RedactionConfig.blackbarItemColor.alpha != 0) {
+            if (RedactionConfig.blackbarItemColor.alpha != 0f) {
                 RenderUtils.drawRectangle(
                     it.x,
                     it.y.toFloat(), 22F, 22F, RedactionConfig.blackbarItemColor.toJavaColor()

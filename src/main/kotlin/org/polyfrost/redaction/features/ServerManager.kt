@@ -1,11 +1,11 @@
 package org.polyfrost.redaction.features
 
-import cc.polyfrost.oneconfig.utils.Multithreading
-import cc.polyfrost.oneconfig.utils.NetworkUtils
 import com.google.gson.JsonParser
 import net.minecraft.client.Minecraft
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 import net.minecraftforge.fml.common.network.FMLNetworkEvent.ClientConnectedToServerEvent
+import org.polyfrost.oneconfig.utils.v1.Multithreading
+import org.polyfrost.oneconfig.utils.v1.NetworkUtils
 import org.polyfrost.redaction.config.RedactionConfig
 
 object ServerManager {
@@ -13,7 +13,7 @@ object ServerManager {
     private val serverList = hashMapOf<String, String>()
 
     fun initialize() {
-        Multithreading.runAsync {
+        Multithreading.submit {
             val json =
                 JsonParser().parse(NetworkUtils.getString("https://servermappings.lunarclientcdn.com/servers.json")).asJsonArray
             for (element in json) {

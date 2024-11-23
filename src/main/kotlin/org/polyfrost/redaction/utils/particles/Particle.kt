@@ -1,10 +1,10 @@
 package org.polyfrost.redaction.utils.particles
 
-import cc.polyfrost.oneconfig.libs.universal.UResolution
 import net.minecraft.client.Minecraft
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import org.polyfrost.redaction.utils.RenderUtils
+import org.polyfrost.universal.UResolution
 import kotlin.random.Random
 
 /**

@@ -1,13 +1,13 @@
 package org.polyfrost.redaction.command
 
-import cc.polyfrost.oneconfig.utils.commands.annotations.Command
-import cc.polyfrost.oneconfig.utils.commands.annotations.Main
+import org.polyfrost.oneconfig.api.commands.v1.factories.annotated.Command
 import org.polyfrost.redaction.config.RedactionConfig
+import org.polyfrost.utils.v1.dsl.openUI
 
 @Command("redaction")
 class RedactionCommand {
-    @Main
-    fun handle() {
-        RedactionConfig.openGui()
+    @Command
+    fun main() {
+        RedactionConfig.openUI()
     }
 }

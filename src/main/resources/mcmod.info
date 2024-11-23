@@ -3,7 +3,7 @@
     "modid": "redaction",
     "name": "REDACTION",
     "description": "REDACTION.",
-    "version": "${version}",
+    "version": "${mod_version}",
     "mcversion": "1.8.9",
     "url": "",
     "updateUrl": "",

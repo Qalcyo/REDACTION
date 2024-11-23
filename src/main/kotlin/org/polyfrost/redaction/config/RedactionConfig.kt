@@ -1,43 +1,37 @@
 package org.polyfrost.redaction.config
 
-import cc.polyfrost.oneconfig.config.Config
-import cc.polyfrost.oneconfig.config.annotations.Checkbox
-import cc.polyfrost.oneconfig.config.annotations.Info
-import cc.polyfrost.oneconfig.config.annotations.Slider
-import cc.polyfrost.oneconfig.config.annotations.Switch
-import cc.polyfrost.oneconfig.config.core.OneColor
-import cc.polyfrost.oneconfig.config.data.InfoType
-import cc.polyfrost.oneconfig.config.data.Mod
-import cc.polyfrost.oneconfig.config.data.ModType
-import cc.polyfrost.oneconfig.config.migration.VigilanceMigrator
+import org.polyfrost.oneconfig.api.config.v1.Config
+import org.polyfrost.oneconfig.api.config.v1.annotations.Checkbox
+import org.polyfrost.oneconfig.api.config.v1.annotations.Slider
+import org.polyfrost.oneconfig.api.config.v1.annotations.Switch
+import org.polyfrost.polyui.color.PolyColor
+import org.polyfrost.polyui.color.argb
+import org.polyfrost.polyui.color.rgba
 import org.polyfrost.redaction.Redaction
 import org.polyfrost.redaction.features.BlackBar
 import org.polyfrost.redaction.features.ParticleManager
-import java.awt.Color
-import java.io.File
 
 object RedactionConfig : Config(
-    Mod(
-        Redaction.NAME,
-        ModType.UTIL_QOL,
-        VigilanceMigrator(File(File(File("./W-OVERFLOW"), "REDACTION"), "redaction.toml").path)
-    ), "${Redaction.ID}.json"
+    "${Redaction.ID}.json",
+    Redaction.NAME,
+        Category.QOL,
+
 ) {
 
     @Switch(
-        name = "Disable Hand Item Lighting",
+        title = "Disable Hand Item Lighting",
         category = "General"
     )
     var disableHandLighting = false
 
     @Switch(
-        name = "Customize Hand Item FOV",
+        title = "Customize Hand Item FOV",
         category = "General"
     )
     var customHandFOV = false
 
     @Slider(
-        name = "Hand Item FOV",
+        title = "Hand Item FOV",
         category = "General",
         min = 0F,
         max = 180F
@@ -45,13 +39,13 @@ object RedactionConfig : Config(
     var handFOV = 125
 
     @Switch(
-        name = "Server Preview in Direct Connect",
+        title = "Server Preview in Direct Connect",
         category = "General"
     )
     var serverPreview = false
 
     @Checkbox(
-        name = "Last Server Joined Button",
+        title = "Last Server Joined Button",
         category = "General"
     )
     var lastServerJoined = false
@@ -60,55 +54,55 @@ object RedactionConfig : Config(
     var lastServerIP = ""
 
     @Switch(
-        name = "Replace Hotbar with Blackbar",
+        title = "Replace Hotbar with Blackbar",
         category = "Blackbar"
     )
     var blackbar = false
 
     @Checkbox(
-        name = "Blackbar Slot Numbers",
+        title = "Blackbar Slot Numbers",
         category = "Blackbar"
     )
     var blackbarSlotNumbers = false
 
     @Slider(
-        name = "Blackbar Update Speed",
+        title = "Blackbar Update Speed",
         category = "Blackbar",
         min = 1F,
         max = 100F
     )
     var blackbarSpeed = 10
 
-    @cc.polyfrost.oneconfig.config.annotations.Color(
-        name = "Blackbar Color",
+    @org.polyfrost.oneconfig.api.config.v1.annotations.Color(
+        title = "Blackbar Color",
         category = "Blackbar"
     )
-    var blackbarColor: OneColor = OneColor(0, 0, 0, 85)
+    var blackbarColor: PolyColor = rgba(0, 0, 0, 85f)
 
-    @cc.polyfrost.oneconfig.config.annotations.Color(
-        name = "Blackbar Item Highlight Color",
+    @org.polyfrost.oneconfig.api.config.v1.annotations.Color(
+        title = "Blackbar Item Highlight Color",
         category = "Blackbar"
     )
-    var blackbarItemColor: OneColor = OneColor(Color.WHITE)
+    var blackbarItemColor: PolyColor = PolyColor.WHITE
 
     @Switch(
-        name = "Add Snow in Inventory",
+        title = "Add Snow in Inventory",
         category = "Inventory",
         subcategory = "Snow"
     )
     var addSnow = false
 
-    @Info(
-        text = "Higher snow amounts may result in reduced performance!",
-        size = 2,
-        category = "Inventory",
-        subcategory = "Snow",
-        type = InfoType.WARNING
-    )
-    var ignored = false
+//    @Info(
+//        text = "Higher snow amounts may result in reduced performance!",
+//        size = 2,
+//        category = "Inventory",
+//        subcategory = "Snow",
+//        type = InfoType.WARNING
+//    )
+//    var ignored = false
 
     @Slider(
-        name = "Snow Amount",
+        title = "Snow Amount",
         category = "Inventory",
         subcategory = "Snow",
         min = 50F,
@@ -116,43 +110,43 @@ object RedactionConfig : Config(
     )
     var particles = 100
 
-    @cc.polyfrost.oneconfig.config.annotations.Color(
-        name = "Snow Color",
+    @org.polyfrost.oneconfig.api.config.v1.annotations.Color(
+        title = "Snow Color",
         category = "Inventory",
         subcategory = "Snow"
     )
-    var snowColor = OneColor(-1)
+    var snowColor = argb(-1)
 
     @Switch(
-        name = "Draw Lines between Snowflakes",
+        title = "Draw Lines between Snowflakes",
         category = "Inventory",
         subcategory = "Lines"
     )
     var connectSnow = false
 
     @Slider(
-        name = "Line Width",
+        title = "Line Width",
         category = "Inventory",
         subcategory = "Lines",
         min = 1f,
         max = 5f,
-        step = 1
+        step = 1f
     )
     var lineWidth = 1f
 
-    @cc.polyfrost.oneconfig.config.annotations.Color(
-        name = "Line Color",
+    @org.polyfrost.oneconfig.api.config.v1.annotations.Color(
+        title = "Line Color",
         category = "Inventory",
         subcategory = "Lines"
     )
-    var lineColor = OneColor(Color.WHITE)
+    var lineColor = PolyColor.WHITE
 
     init {
-        initialize()
-        addListener("particles") {
+        addCallback("particles") {
             ParticleManager.hasChanged = true
         }
-        addListener("blackbarSpeed") {
+
+        addCallback("blackbarSpeed") {
             BlackBar.setTimer()
         }
 

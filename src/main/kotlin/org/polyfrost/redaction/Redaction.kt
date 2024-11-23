@@ -1,10 +1,10 @@
 package org.polyfrost.redaction
 
-import cc.polyfrost.oneconfig.utils.commands.CommandManager
 import net.minecraftforge.common.MinecraftForge.EVENT_BUS
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.event.FMLInitializationEvent
 import net.minecraftforge.fml.common.event.FMLLoadCompleteEvent
+import org.polyfrost.oneconfig.api.commands.v1.CommandManager
 import org.polyfrost.redaction.command.RedactionCommand
 import org.polyfrost.redaction.config.RedactionConfig
 import org.polyfrost.redaction.features.BlackBar
@@ -15,20 +15,20 @@ import org.polyfrost.redaction.features.ServerManager
     name = Redaction.NAME,
     modid = Redaction.ID,
     version = Redaction.VERSION,
-    modLanguageAdapter = "cc.polyfrost.oneconfig.utils.KotlinLanguageAdapter"
+    modLanguageAdapter = "org.polyfrost.oneconfig.utils.v1.forge.KotlinLanguageAdapter"
 )
 object Redaction {
 
-    const val NAME = "@NAME@"
-    const val VERSION = "@VER@"
-    const val ID = "@ID@"
+    const val NAME = "@MOD_NAME@"
+    const val VERSION = "@MOD_VERSION@"
+    const val ID = "@MOD_ID@"
     var overrideHand = false
     var renderingHand = false
 
     @Mod.EventHandler
     fun onFMLInitialization(event: FMLInitializationEvent) {
         RedactionConfig.preload()
-        CommandManager.register(RedactionCommand())
+        CommandManager.registerCommand(RedactionCommand())
         EVENT_BUS.register(ParticleManager)
         EVENT_BUS.register(ServerManager)
         ServerManager.initialize()

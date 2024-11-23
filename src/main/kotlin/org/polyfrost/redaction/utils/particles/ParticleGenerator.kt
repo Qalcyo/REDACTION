@@ -46,12 +46,12 @@ class ParticleGenerator {
                     particles.filter { other ->
                         other !== particle && abs(other.x - particle.x) < range && abs(other.y - particle.y) < range
                     }.forEach { connectable ->
-                        particle.connect(connectable.x, connectable.y, RedactionConfig.lineColor.rgb, RedactionConfig.lineWidth)
+                        particle.connect(connectable.x, connectable.y, RedactionConfig.lineColor.rgba, RedactionConfig.lineWidth)
                     }
                 }
             }
 
-            RenderUtils.drawCircle(particle.x, particle.y, particle.size, RedactionConfig.snowColor.rgb)
+            RenderUtils.drawCircle(particle.x, particle.y, particle.size, RedactionConfig.snowColor.rgba)
 
         }
 
