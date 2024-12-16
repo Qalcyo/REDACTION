@@ -1,8 +1,6 @@
-package org.polyfrost.redaction.utils.particles
+package org.polyfrost.redaction.features.particles
 
 import net.minecraft.client.Minecraft
-import net.minecraftforge.fml.relauncher.Side
-import net.minecraftforge.fml.relauncher.SideOnly
 import org.polyfrost.redaction.utils.RenderUtils
 import org.polyfrost.universal.UResolution
 import kotlin.random.Random
@@ -15,8 +13,6 @@ import kotlin.random.Random
  * @author Vitox
  * @version 3.0
  */
-
-@SideOnly(Side.CLIENT)
 class Particle internal constructor(var x: Float, var y: Float) {
 
     val size: Float = 0.3f + RANDOM.nextFloat() * 1.3f

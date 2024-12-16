@@ -1,8 +1,7 @@
-package org.polyfrost.redaction.utils.particles
+package org.polyfrost.redaction.features.particles
 
 import net.minecraft.client.Minecraft
 import org.polyfrost.redaction.config.RedactionConfig
-import org.polyfrost.redaction.features.ParticleManager
 import org.polyfrost.redaction.utils.RenderUtils
 import kotlin.math.abs
 import kotlin.random.Random

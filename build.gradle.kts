@@ -15,7 +15,8 @@ plugins {
 
 toolkitLoomHelper {
     // Adds OneConfig to our project
-    useOneConfig(mcData, "commands", "config", "config-impl", "events", "internal", "ui")
+    useOneConfig("1.1.0-alpha.34", "1.0.0-alpha.43", mcData, "commands", "config-impl", "events", "hud", "internal", "ui")
+    useDevAuth()
 
     // Removes the server configs from IntelliJ IDEA, leaving only client runs.
     // If you're developing a server-side mod, you can remove this line.
@@ -30,17 +31,16 @@ toolkitLoomHelper {
     if (mcData.isLegacyForge) {
         useTweaker("org.polyfrost.oneconfig.loader.stage0.LaunchWrapperTweaker", GameSide.CLIENT)
         useForgeMixin(modData.id) // Configures the mixins if we are building for forge, useful for when we are dealing with cross-platform projects.
-
-        useProperty("mixin.debug.export", "true", GameSide.CLIENT)
     }
 }
 
-// Configures the Polyfrost Loom, our plugin fork to easily set up the programming environment.
-if (mcData.isForge) {
-    loom {
+loom {
+    if (mcData.isLegacyForge) {
         forge {
             accessTransformer(rootProject.file("src/main/resources/redaction_at.cfg"))
         }
+    } else if (mcData.isLegacyFabric) {
+        accessWidenerPath.set(rootProject.file("src/main/resources/redaction_aw.accesswidener"))
     }
 }
 
@@ -60,9 +60,18 @@ repositories {
 
 // Configures the libraries/dependencies for your mod.
 dependencies {
-    // If we are building for legacy forge, includes the launch wrapper with `shade` as we configured earlier, as well as mixin 0.7.11
-    if (mcData.isLegacyForge) {
-        compileOnly("org.spongepowered:mixin:0.7.11-SNAPSHOT")
+    when {
+        mcData.isLegacyForge -> {
+            compileOnly("org.spongepowered:mixin:0.7.11-SNAPSHOT")
+        }
+
+        mcData.isFabric -> {
+            modImplementation("net.fabricmc:fabric-language-kotlin:${mcData.dependencies.fabric.fabricLanguageKotlinVersion}")
+
+            if (mcData.isLegacyFabric) {
+                modImplementation("net.legacyfabric.legacy-fabric-api:legacy-fabric-api:${mcData.dependencies.legacyFabric.legacyFabricApiVersion}")
+            }
+        }
     }
 }
 

@@ -1,11 +1,18 @@
 package org.polyfrost.redaction.plugin
 
+//#if FORGE && MC <= 1.12.2
 import org.spongepowered.asm.lib.tree.ClassNode
+//#else
+//$$ import org.objectweb.asm.tree.ClassNode
+//#endif
+
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo
 
 class RedactionMixinPlugin : IMixinConfigPlugin {
+
     private var optifine = false
+
     override fun onLoad(mixinPackage: String?) {
         optifine = try {
             Class.forName("Config", false, javaClass.classLoader)
@@ -48,4 +55,5 @@ class RedactionMixinPlugin : IMixinConfigPlugin {
     ) {
 
     }
+
 }

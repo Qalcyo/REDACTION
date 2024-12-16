@@ -6,13 +6,13 @@ import net.minecraft.client.renderer.GlStateManager
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.util.ResourceLocation
 import org.polyfrost.oneconfig.utils.v1.Multithreading
+import org.polyfrost.oneconfig.utils.v1.dsl.mc
 import org.polyfrost.polyui.color.toJavaColor
 import org.polyfrost.redaction.config.RedactionConfig
 import org.polyfrost.redaction.mixin.MinecraftAccessor
 import org.polyfrost.redaction.utils.MathUtil
 import org.polyfrost.redaction.utils.RenderUtils
 import org.polyfrost.universal.UResolution
-import org.polyfrost.utils.v1.dsl.mc
 import java.awt.event.ActionListener
 import javax.swing.Timer
 

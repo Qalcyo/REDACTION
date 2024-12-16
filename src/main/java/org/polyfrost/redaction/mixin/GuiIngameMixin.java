@@ -19,18 +19,19 @@ import java.awt.*;
 
 @Mixin(GuiIngame.class)
 public abstract class GuiIngameMixin {
-    @Shadow
-    protected abstract void renderHotbarItem(int index, int xPos, int yPos, float partialTicks, EntityPlayer player);
 
     @Shadow
     @Final
     protected Minecraft mc;
 
+    @Shadow
+    protected abstract void renderHotbarItem(int index, int xPos, int yPos, float partialTicks, EntityPlayer player);
+
     @Inject(method = "renderTooltip", at = @At("HEAD"), cancellable = true)
     private void cancel(ScaledResolution res, float partialTicks, CallbackInfo ci) {
         if (RedactionConfig.INSTANCE.getBlackbar()) {
             ci.cancel();
-            if (mc.getRenderViewEntity() instanceof EntityPlayer) {
+            if (this.mc.getRenderViewEntity() instanceof EntityPlayer) {
                 BlackBar.INSTANCE.render();
                 GlStateManager.enableDepth();
                 GlStateManager.enableRescaleNormal();
@@ -45,21 +46,24 @@ public abstract class GuiIngameMixin {
                     if (RedactionConfig.INSTANCE.getBlackbarSlotNumbers()){
                         GlStateManager.disableDepth();
                         GlStateManager.tryBlendFuncSeparate(775, 769, 1, 0);
-                        mc.fontRendererObj.drawString(
+                        this.mc.fontRendererObj.drawString(
                                 String.valueOf(j + 1),
                                 k,
                                 l,
                                 Color.WHITE.getRGB(),
                                 false
                         );
+
                         GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
                         GlStateManager.enableDepth();
                     }
                 }
+
                 RenderHelper.disableStandardItemLighting();
                 GlStateManager.disableRescaleNormal();
                 GlStateManager.disableBlend();
             }
         }
     }
+
 }

@@ -9,7 +9,7 @@ import org.polyfrost.polyui.color.argb
 import org.polyfrost.polyui.color.rgba
 import org.polyfrost.redaction.Redaction
 import org.polyfrost.redaction.features.BlackBar
-import org.polyfrost.redaction.features.ParticleManager
+import org.polyfrost.redaction.features.particles.ParticleManager
 
 object RedactionConfig : Config(
     "${Redaction.ID}.json",
