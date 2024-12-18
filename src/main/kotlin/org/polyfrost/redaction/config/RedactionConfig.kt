@@ -65,14 +65,6 @@ object RedactionConfig : Config(
     )
     var blackbarSlotNumbers = false
 
-    @Slider(
-        title = "Blackbar Update Speed",
-        category = "Blackbar",
-        min = 1F,
-        max = 100F
-    )
-    var blackbarSpeed = 10
-
     @org.polyfrost.oneconfig.api.config.v1.annotations.Color(
         title = "Blackbar Color",
         category = "Blackbar"
@@ -144,10 +136,6 @@ object RedactionConfig : Config(
     init {
         addCallback("particles") {
             ParticleManager.hasChanged = true
-        }
-
-        addCallback("blackbarSpeed") {
-            BlackBar.setTimer()
         }
 
         addDependency("handFOV", "customHandFOV")

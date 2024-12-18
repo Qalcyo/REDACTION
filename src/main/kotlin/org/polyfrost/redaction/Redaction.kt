@@ -12,7 +12,6 @@ import net.minecraftforge.fml.common.event.FMLLoadCompleteEvent
 import org.polyfrost.oneconfig.api.commands.v1.CommandManager
 import org.polyfrost.redaction.command.RedactionCommand
 import org.polyfrost.redaction.config.RedactionConfig
-import org.polyfrost.redaction.features.BlackBar
 import org.polyfrost.redaction.features.particles.ParticleManager
 import org.polyfrost.redaction.features.ServerManager
 
@@ -44,11 +43,6 @@ object Redaction
         initialize()
         MinecraftForge.EVENT_BUS.register(ParticleManager)
         MinecraftForge.EVENT_BUS.register(ServerManager)
-    }
-
-    @Mod.EventHandler
-    fun onFMLPost(e: FMLLoadCompleteEvent) {
-        BlackBar.initialize()
     }
     //#else
     //$$ override fun onInitializeClient() {
