@@ -6,9 +6,7 @@ import org.polyfrost.oneconfig.api.config.v1.annotations.Slider
 import org.polyfrost.oneconfig.api.config.v1.annotations.Switch
 import org.polyfrost.polyui.color.PolyColor
 import org.polyfrost.polyui.color.argb
-import org.polyfrost.polyui.color.rgba
 import org.polyfrost.redaction.Redaction
-import org.polyfrost.redaction.features.BlackBar
 import org.polyfrost.redaction.features.particles.ParticleManager
 
 object RedactionConfig : Config(
@@ -58,24 +56,6 @@ object RedactionConfig : Config(
         category = "Blackbar"
     )
     var blackbar = false
-
-    @Checkbox(
-        title = "Blackbar Slot Numbers",
-        category = "Blackbar"
-    )
-    var blackbarSlotNumbers = false
-
-    @org.polyfrost.oneconfig.api.config.v1.annotations.Color(
-        title = "Blackbar Color",
-        category = "Blackbar"
-    )
-    var blackbarColor: PolyColor = rgba(0, 0, 0, 85f)
-
-    @org.polyfrost.oneconfig.api.config.v1.annotations.Color(
-        title = "Blackbar Item Highlight Color",
-        category = "Blackbar"
-    )
-    var blackbarItemColor: PolyColor = PolyColor.WHITE
 
     @Switch(
         title = "Add Snow in Inventory",

@@ -10,7 +10,6 @@
   "client": [
     "EntityRendererMixin",
     "EntityRendererMixin_OptiFine",
-    "GuiIngameMixin",
     "GuiMainMenuMixin",
     "GuiScreenServerListMixin",
     "MinecraftAccessor",
