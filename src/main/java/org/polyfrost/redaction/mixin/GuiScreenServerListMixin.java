@@ -50,7 +50,19 @@ public class GuiScreenServerListMixin extends GuiScreen {
                 previewData.field_78841_f = false;
             }
 
-            this.redaction$serverPreview.drawEntry(0, this.width / 2 - 100, 30, 200, 35, mouseX, mouseY, false);
+            this.redaction$serverPreview.drawEntry(
+                    0,
+                    this.width / 2 - 100,
+                    30,
+                    200,
+                    35,
+                    mouseX,
+                    mouseY,
+                    false
+                    //#if MC >= 1.12.2
+                    //$$ , partialTicks
+                    //#endif
+            );
         }
     }
 

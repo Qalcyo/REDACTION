@@ -1,0 +1,2 @@
+net.minecraft.client.renderer.RenderItem net.minecraft.client.renderer.entity.RenderItem
+net.minecraft.client.renderer.block.model.IBakedModel net.minecraft.client.resources.model.IBakedModel

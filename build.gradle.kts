@@ -62,7 +62,7 @@ repositories {
 dependencies {
     when {
         mcData.isLegacyForge -> {
-            compileOnly("org.spongepowered:mixin:0.7.11-SNAPSHOT")
+            compileOnly("org.polyfrost:polymixin:0.8.4+build.2")
         }
 
         mcData.isFabric -> {
