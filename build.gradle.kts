@@ -81,5 +81,6 @@ tasks {
                 "FMLAT" to "redaction_at.cfg"
             )
         }
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     }
 }
